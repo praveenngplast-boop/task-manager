@@ -27,7 +27,8 @@ export const TaskProvider = ({ children }) => {
   // --- Core Persistent State ---
   const [tasks, setTasksState] = useState(() => {
     const saved = localStorage.getItem('office_tasks');
-    return saved ? JSON.parse(saved) : SAMPLE_TASKS;
+    const loaded = saved ? JSON.parse(saved) : SAMPLE_TASKS;
+    return loaded.map(t => ({ ...t, status: t.status || 'Todo' }));
   });
 
   const [employees, setEmployees] = useState(() => {

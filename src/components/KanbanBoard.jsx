@@ -81,51 +81,28 @@ export default function KanbanBoard() {
                       className="p-4 rounded-xl border border-slate-100 dark:border-slate-800/60 bg-white dark:bg-slate-900 shadow-sm hover:shadow-md cursor-grab active:cursor-grabbing hover:border-indigo-500/20 transition-all duration-150 relative group"
                     >
                       <div className="space-y-3">
-                        {/* Tags & Priority row */}
+                        {/* Priority row */}
                         <div className="flex items-center justify-between">
                           <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
                             task.priority === 'Critical' ? 'bg-rose-500/10 text-rose-500' :
                             task.priority === 'High' ? 'bg-orange-500/10 text-orange-500' :
                             'bg-indigo-500/10 text-indigo-500'
                           }`}>
-                            {task.priority}
+                            {task.priority} Priority
                           </span>
-                          {task.starred && <Star size={12} className="fill-yellow-500 text-yellow-500" />}
                         </div>
 
                         {/* Title */}
-                        <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">
+                        <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight break-words">
                           {task.title}
                         </h4>
 
-                        {/* Department indicator */}
-                        <span className="text-[10px] text-indigo-500 font-semibold block">{task.department}</span>
-
-                        {/* Subtasks brief check */}
-                        {task.subtasks?.length > 0 && (
-                          <div className="flex items-center gap-1.5 text-[9px] text-slate-400">
-                            <CheckSquare size={10} />
-                            <span>
-                              {task.subtasks.filter(s => s.completed).length} / {task.subtasks.length} Subtasks
-                            </span>
-                          </div>
+                        {/* Description */}
+                        {task.description && (
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-3 break-words">
+                            {task.description}
+                          </p>
                         )}
-
-                        {/* Footer row */}
-                        <div className="flex items-center justify-between pt-3 border-t border-slate-50 dark:border-slate-800/60 mt-3 text-[10px] text-slate-400">
-                          <span className="flex items-center gap-1 font-semibold">
-                            <Calendar size={11} /> {task.dueDate}
-                          </span>
-                          
-                          {task.assignee && (
-                            <img
-                              src={task.assignee.avatar}
-                              alt={task.assignee.name}
-                              className="w-5.5 h-5.5 rounded-full border border-slate-200 dark:border-slate-700"
-                              title={task.assignee.name}
-                            />
-                          )}
-                        </div>
                       </div>
                     </motion.div>
                   ))
