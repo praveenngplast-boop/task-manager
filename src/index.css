@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 transition-colors duration-300 font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  body.dark {
+    @apply bg-dark-950 text-slate-100;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Glassmorphism utility classes */
+.glass {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  @apply glass rounded-2xl shadow-xl shadow-slate-100/50 dark:shadow-none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dark .glass-card {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Scrollbar customizations */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full hover:bg-slate-400 dark:hover:bg-slate-600;
+}
+
+/* Grid Layout Custom */
+.kanban-column {
+  min-height: calc(100vh - 280px);
+}
+
+/* Animate counter values */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-counter {
+  animation: countUp 0.5s ease-out forwards;
+}
+
+/* Pomodoro progress circular stroke */
+.pomodoro-circle {
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* Quick Note floating animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Drift animation for floating background blobs */
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(4vw, 5vh) scale(1.08) rotate(120deg);
+  }
+  66% {
+    transform: translate(-3vw, 8vh) scale(0.92) rotate(240deg);
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(360deg);
+  }
+}
+
+.animate-drift-slow {
+  animation: drift 25s infinite ease-in-out alternate;
+}
+
