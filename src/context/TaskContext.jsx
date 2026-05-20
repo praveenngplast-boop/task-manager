@@ -521,12 +521,10 @@ export const TaskProvider = ({ children }) => {
           if (updatedData.status && updatedData.status !== t.status) {
             history.push({ timestamp: new Date().toISOString(), action: `Status changed to ${updatedData.status}` });
             
-            // Automatically adjust progress if it isn't driven by subtasks
-            if (!t.subtasks || t.subtasks.length === 0) {
-              if (updatedData.status === 'Todo') updatedData.progress = 0;
-              if (updatedData.status === 'In Progress') updatedData.progress = Math.max(t.progress || 0, 20);
-              if (updatedData.status === 'Review') updatedData.progress = Math.max(t.progress || 0, 80);
-            }
+            // Automatically adjust progress visually regardless of subtasks
+            if (updatedData.status === 'Todo') updatedData.progress = 0;
+            if (updatedData.status === 'In Progress') updatedData.progress = Math.max(t.progress || 0, 20);
+            if (updatedData.status === 'Review') updatedData.progress = Math.max(t.progress || 0, 80);
           }
 
           if (updatedData.status === 'Completed' && t.status !== 'Completed') {
