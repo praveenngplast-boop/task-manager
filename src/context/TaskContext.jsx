@@ -488,6 +488,7 @@ export const TaskProvider = ({ children }) => {
       notes: '',
       history: [{ timestamp: new Date().toISOString(), action: 'Task created' }],
       archived: false,
+      status: 'Todo',
       ...taskData
     };
 
