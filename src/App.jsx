@@ -83,10 +83,19 @@ function AppContent() {
   });
 
   // Time Tracker state
-  const [time, setTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+  const getDateTime = () => {
+    const now = new Date();
+    return {
+      time: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      day: now.toLocaleDateString(undefined, { weekday: 'short' }),
+      date: now.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+    };
+  };
+
+  const [dateInfo, setDateInfo] = useState(getDateTime());
   useEffect(() => {
     const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+      setDateInfo(getDateTime());
     }, 30000);
     return () => clearInterval(timer);
   }, []);
@@ -142,10 +151,13 @@ function AppContent() {
               <span>{autoSaveStatus === 'saving' ? 'Auto-saving...' : 'Synced'}</span>
             </div>
 
-            {/* Time display */}
-            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 bg-slate-100/50 dark:bg-slate-900/40 px-3 py-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800/45">
+            {/* Time and date display */}
+            <div className="flex items-center gap-3 text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100/50 dark:bg-slate-900/40 px-3 py-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800/45">
               <Clock size={12} />
-              <span>{time}</span>
+              <div className="leading-none">
+                <div className="font-bold text-slate-700 dark:text-slate-100">{dateInfo.time}</div>
+                <div className="text-[10px] text-slate-500 dark:text-slate-400">{`${dateInfo.day}, ${dateInfo.date}`}</div>
+              </div>
             </div>
           </div>
         </header>
