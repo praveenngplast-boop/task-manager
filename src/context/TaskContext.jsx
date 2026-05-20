@@ -276,6 +276,10 @@ export const TaskProvider = ({ children }) => {
     }, 4500);
   };
 
+  const removeToast = (id) => {
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  };
+
   // --- Activity Logger ---
   const logActivity = (action) => {
     const newActivity = {
@@ -1008,6 +1012,7 @@ export const TaskProvider = ({ children }) => {
         showShortcutsHelp,
         setShowShortcutsHelp,
         addToast,
+        removeToast,
         playSound,
         triggerConfetti,
 

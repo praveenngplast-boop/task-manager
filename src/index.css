@@ -12,7 +12,8 @@
   }
 
   body.dark {
-    @apply bg-dark-950 text-slate-100;
+    @apply text-slate-100;
+    background-color: #09090b !important; /* Deep zinc */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -29,10 +30,10 @@
 }
 
 .dark .glass {
-  background: rgba(15, 23, 42, 0.45);
+  background: rgba(24, 24, 27, 0.75) !important;
   backdrop-filter: blur(16px) saturate(120%);
   -webkit-backdrop-filter: blur(16px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
 .glass-card {
@@ -41,7 +42,29 @@
 }
 
 .dark .glass-card {
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  background: rgba(24, 24, 27, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Global Dark Mode Color Overrides for Sleek Aesthetic */
+.dark .bg-white, .dark .bg-slate-900, .dark .bg-slate-950 {
+  background-color: #18181b !important;
+}
+.dark .bg-slate-50, .dark .bg-slate-100 {
+  background-color: #09090b !important;
+}
+.dark .text-slate-800, .dark .text-slate-900 {
+  color: #f4f4f5 !important;
+}
+.dark .text-slate-700 {
+  color: #e4e4e7 !important;
+}
+.dark .text-slate-500, .dark .text-slate-600 {
+  color: #a1a1aa !important;
+}
+.dark .border-slate-100, .dark .border-slate-200, .dark .border-slate-800 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Scrollbar customizations */

@@ -296,7 +296,7 @@ export default function Dashboard() {
                 <div key={act.id} className="flex gap-3 text-xs items-start">
                   <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0" />
                   <div className="flex-1 text-left min-w-0">
-                    <p className="text-slate-700 dark:text-slate-300 font-medium truncate">{act.action}</p>
+                    <p className="text-slate-700 dark:text-slate-300 font-medium break-words whitespace-pre-wrap">{act.action}</p>
                     <span className="text-[9px] text-slate-400 block mt-0.5">{act.timestamp}</span>
                   </div>
                 </div>

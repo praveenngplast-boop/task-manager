@@ -4,7 +4,7 @@ import { CheckCircle, AlertTriangle, Info, X, Volume2, VolumeX } from 'lucide-re
 import { useTasks } from '../context/TaskContext';
 
 export default function ToastContainer() {
-  const { notifications, soundEnabled, setSoundEnabled } = useTasks();
+  const { notifications, soundEnabled, setSoundEnabled, removeToast } = useTasks();
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none">
@@ -53,7 +53,7 @@ export default function ToastContainer() {
                 <Icon size={18} />
               </div>
               <div className="flex-1">
-                <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-200 pr-6">
                   {notif.title}
                 </h4>
                 {notif.description && (
@@ -62,6 +62,12 @@ export default function ToastContainer() {
                   </p>
                 )}
               </div>
+              <button 
+                onClick={() => removeToast(notif.id)}
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 shrink-0"
+              >
+                <X size={14} />
+              </button>
             </motion.div>
           );
         })}
