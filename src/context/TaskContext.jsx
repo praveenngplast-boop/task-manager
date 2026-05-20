@@ -523,8 +523,8 @@ export const TaskProvider = ({ children }) => {
             
             // Automatically adjust progress visually regardless of subtasks
             if (updatedData.status === 'Todo') updatedData.progress = 0;
-            if (updatedData.status === 'In Progress') updatedData.progress = Math.max(t.progress || 0, 20);
-            if (updatedData.status === 'Review') updatedData.progress = Math.max(t.progress || 0, 80);
+            if (updatedData.status === 'In Progress') updatedData.progress = 25;
+            if (updatedData.status === 'Review') updatedData.progress = 75;
           }
 
           if (updatedData.status === 'Completed' && t.status !== 'Completed') {
