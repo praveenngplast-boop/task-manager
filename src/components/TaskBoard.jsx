@@ -320,10 +320,7 @@ export default function TaskBoard() {
                 {/* Assignee */}
                 <div className="hidden md:flex col-span-2 justify-center">
                   {t.assignee ? (
-                    <div className="flex items-center gap-2">
-                      <img src={t.assignee.avatar} alt={t.assignee.name} className="w-6 h-6 rounded-full border border-slate-200/50" />
-                      <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium truncate max-w-[80px]">{t.assignee.name.split(' ')[0]}</span>
-                    </div>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium truncate max-w-[80px]">{t.assignee.name.split(' ')[0]}</span>
                   ) : (
                     <span className="text-[10px] text-slate-400 italic">Unassigned</span>
                   )}
@@ -387,7 +384,7 @@ export default function TaskBoard() {
                   <div className="space-y-3.5 pt-4 mt-4 border-t border-slate-100 dark:border-slate-800/80">
                     <div className="flex items-center justify-between text-xs text-slate-500">
                       <span className="flex items-center gap-1 font-semibold"><Calendar size={12} /> {t.dueDate}</span>
-                      {t.assignee && <img src={t.assignee.avatar} alt={t.assignee.name} className="w-6 h-6 rounded-full border" title={t.assignee.name} />}
+                      {t.assignee && <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium truncate">{t.assignee.name.split(' ')[0]}</span>}
                     </div>
 
                     <div className="space-y-1">
