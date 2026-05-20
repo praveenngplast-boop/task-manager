@@ -73,12 +73,18 @@ export default function Dashboard() {
   );
 
   // 2. Productivity Analytics Area Chart (Simulated Timeline)
+  const getDayName = (offset) => {
+    const d = new Date();
+    d.setDate(d.getDate() + offset);
+    return d.toLocaleDateString('en-US', { weekday: 'short' });
+  };
+
   const timelineData = [
-    { day: 'Mon', completed: 2, efficiency: 65 },
-    { day: 'Tue', completed: 4, efficiency: 78 },
-    { day: 'Wed', completed: 3, efficiency: 72 },
-    { day: 'Thu', completed: 5, efficiency: 88 },
-    { day: 'Fri', completed: stats.completed, efficiency: productivityScore }
+    { day: getDayName(0), completed: 2, efficiency: 65 },
+    { day: getDayName(1), completed: 4, efficiency: 78 },
+    { day: getDayName(2), completed: 3, efficiency: 72 },
+    { day: getDayName(3), completed: 5, efficiency: 88 },
+    { day: getDayName(4), completed: stats.completed, efficiency: productivityScore }
   ];
 
   // Pie chart variables
