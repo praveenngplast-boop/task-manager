@@ -13,6 +13,8 @@ import TaskBoard from './components/TaskBoard';
 import KanbanBoard from './components/KanbanBoard';
 import NoteTaking from './components/NoteTaking';
 import Settings from './components/Settings';
+import TomorrowView from './components/TomorrowView';
+import TodayView from './components/TodayView';
 
 // Icons
 import { 
@@ -188,8 +190,10 @@ function AppContent() {
         {/* Content Body Pages */}
         <main className="p-6 md:p-8 flex-1">
           {activeTab === 'dashboard' && <Dashboard />}
+          {activeTab === 'today' && <TodayView />}
           {activeTab === 'tasks' && <TaskBoard />}
           {activeTab === 'kanban' && <KanbanBoard />}
+          {activeTab === 'tomorrow' && <TomorrowView />}
           {activeTab === 'notes' && <NoteTaking />}
           {activeTab === 'settings' && <Settings />}
         </main>

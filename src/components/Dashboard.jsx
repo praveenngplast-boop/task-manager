@@ -1,30 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  ResponsiveContainer, 
-  AreaChart, 
-  Area, 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  Tooltip,
-  PieChart,
-  Pie,
-  Cell
-} from 'recharts';
-import { 
   Activity, 
   Clock, 
   CheckCircle, 
   AlertCircle, 
   TrendingUp, 
-  Users, 
   Sparkles,
   Download,
   Printer,
   ChevronRight,
-  HelpCircle,
   AlertTriangle,
   FolderOpen
 } from 'lucide-react';
@@ -72,28 +57,6 @@ export default function Dashboard() {
     }, {})
   );
 
-  // 2. Productivity Analytics Area Chart (Simulated Timeline)
-  const getDayName = (offset) => {
-    const d = new Date();
-    d.setDate(d.getDate() + offset);
-    return d.toLocaleDateString('en-US', { weekday: 'short' });
-  };
-
-  const timelineData = [
-    { day: getDayName(0), completed: 2, efficiency: 65 },
-    { day: getDayName(1), completed: 4, efficiency: 78 },
-    { day: getDayName(2), completed: 3, efficiency: 72 },
-    { day: getDayName(3), completed: 5, efficiency: 88 },
-    { day: getDayName(4), completed: stats.completed, efficiency: productivityScore }
-  ];
-
-  // Pie chart variables
-  const statusPieData = [
-    { name: 'Todo', value: stats.todo, color: '#94a3b8' },
-    { name: 'In Progress', value: stats.inProgress, color: '#6366f1' },
-    { name: 'Review', value: stats.review, color: '#f59e0b' },
-    { name: 'Completed', value: stats.completed, color: '#10b981' }
-  ].filter(d => d.value > 0);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -208,35 +171,7 @@ export default function Dashboard() {
         </div>
       </motion.div>
 
-      {/* Analytics Graph Grid */}
-      <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Area Chart */}
-        <div className="lg:col-span-2 glass-card p-6 flex flex-col justify-between">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Weekly Efficiency Profile</span>
-            <div className="flex items-center gap-4 text-xs font-semibold">
-              <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-indigo-500" /> Efficiency</span>
-            </div>
-          </div>
-          <div className="h-[240px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={timelineData}>
-                <defs>
-                  <linearGradient id="colorEff" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.25}/>
-                    <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <XAxis dataKey="day" stroke="#64748b" fontSize={11} tickLine={false} />
-                <YAxis stroke="#64748b" fontSize={11} tickLine={false} />
-                <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: 8, color: '#f8fafc' }} />
-                <Area type="monotone" dataKey="efficiency" stroke="#6366f1" strokeWidth={2.5} fillOpacity={1} fill="url(#colorEff)" />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        {/* AI Insight Sidebar Widget */}
+      <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="glass-card p-6 bg-gradient-to-b from-white to-slate-50/20 dark:from-slate-900 dark:to-slate-900/30 flex flex-col justify-between gap-4">
           <div className="space-y-4">
             <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2">
@@ -250,6 +185,27 @@ export default function Dashboard() {
             <div className="border-t border-slate-100 dark:border-slate-800 pt-3 flex justify-between text-xs text-slate-400">
               <span>Goal completions:</span>
               <span className="font-bold text-slate-700 dark:text-slate-200">82% (Excellent)</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="glass-card p-6 bg-gradient-to-br from-indigo-500/10 to-slate-50 dark:from-indigo-500/15 dark:to-slate-900 flex flex-col justify-between gap-4">
+          <div>
+            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2">
+              <Sparkles size={16} className="text-indigo-500" /> Fast summary
+            </h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+              No graphs here — just quick insights and action items for a cleaner dashboard experience.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-3xl bg-white/90 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 p-4 text-sm">
+              <div className="text-xs uppercase tracking-[0.24em] text-slate-400 mb-2">Open tasks</div>
+              <div className="text-3xl font-bold text-slate-900 dark:text-white">{stats.todo + stats.inProgress + stats.review}</div>
+            </div>
+            <div className="rounded-3xl bg-white/90 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 p-4 text-sm">
+              <div className="text-xs uppercase tracking-[0.24em] text-slate-400 mb-2">Completed</div>
+              <div className="text-3xl font-bold text-slate-900 dark:text-white">{stats.completed}</div>
             </div>
           </div>
         </div>

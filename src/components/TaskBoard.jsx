@@ -158,8 +158,8 @@ export default function TaskBoard() {
                   className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-2 outline-none text-slate-700 dark:text-slate-350"
                 >
                   <option value="All">All Departments</option>
-                  {departments.map(d => (
-                    <option key={d.id} value={d.name}>{d.name}</option>
+                  {Array.from(new Set(tasks.map(t => t.department).filter(Boolean))).sort().map(d => (
+                    <option key={d} value={d}>{d}</option>
                   ))}
                 </select>
               </div>

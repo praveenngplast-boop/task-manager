@@ -13,7 +13,8 @@ import {
   Moon,
   Menu,
   FileText,
-  Settings as SettingsIcon
+  Settings as SettingsIcon,
+  CalendarClock
 } from 'lucide-react';
 import { useTasks } from '../context/TaskContext';
 
@@ -47,8 +48,10 @@ export default function Sidebar() {
 
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, badge: null },
+    { id: 'today', label: 'Today’s Plan', icon: Sun, badge: null },
     { id: 'tasks', label: 'Task Board', icon: CheckSquare, badge: stats.todo + stats.inProgress },
     { id: 'kanban', label: 'Kanban Board', icon: Kanban, badge: null },
+    { id: 'tomorrow', label: 'Tomorrow', icon: CalendarClock, badge: null },
     { id: 'notes', label: 'Note Taking', icon: FileText, badge: null },
     { id: 'settings', label: 'Settings', icon: SettingsIcon, badge: null }
   ];
